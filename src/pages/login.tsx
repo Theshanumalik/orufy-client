@@ -51,12 +51,13 @@ export const LoginPage = () => {
     },
 
     onSuccess: (data: AxiosResponse) => {
-      console.log(data)
+      toast.dismiss()
       navigate(`/login/otp?user=${data.data._id}&otp=${data.data.otp}`)
       toast.success("OTP sent");
     },
 
     onError: (error: AxiosError) => {
+      toast.dismiss()
       toast.error(
         error.message ??
         "Failed to send OTP"

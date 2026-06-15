@@ -5,13 +5,14 @@ import { useUser } from "../context/user-context"
 import { useEffect } from "react"
 
 export const DashboardLayout = () => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
   const navigate = useNavigate()
   useEffect(() => {
-    if (!user) {
-      navigate('/login')
+    if (!isLoading && !user) {
+      navigate("/login");
     }
-  }, [user])
+  }, [user, isLoading, navigate]);
+
   return (
     <main className="bg-blue-50 min-h-screen grid grid-cols-12">
       <Sidebar />

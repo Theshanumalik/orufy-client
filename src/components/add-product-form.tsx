@@ -119,6 +119,7 @@ export const AddProductModal = ({
     },
 
     onSuccess: () => {
+      toast.dismiss()
       queryClient.invalidateQueries({ queryKey: ["products"] })
       toast.success(
         "Product added successfully"
@@ -128,6 +129,7 @@ export const AddProductModal = ({
       onClose();
     },
     onError: (error) => {
+      toast.dismiss()
       console.error(error);
 
       toast.error(
@@ -135,11 +137,9 @@ export const AddProductModal = ({
       );
     },
     onMutate: () => {
+      toast.dismiss()
       toast.loading(
         "Adding new product",
-        {
-          id: "add-product",
-        }
       )
     }
   });
@@ -197,6 +197,7 @@ export const AddProductModal = ({
     },
 
     onSuccess: () => {
+      toast.dismiss()
       queryClient.invalidateQueries({ queryKey: ["products"] })
       toast.success(
         "Product updated"
@@ -206,9 +207,6 @@ export const AddProductModal = ({
     onMutate: () => {
       toast.loading(
         "Adding new product",
-        {
-          id: "add-product",
-        }
       )
     }
   });

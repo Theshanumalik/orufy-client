@@ -19,6 +19,7 @@ type UserContextType = {
   setUser: React.Dispatch<
     React.SetStateAction<User | null>
   >;
+  isLoading: boolean;
 };
 
 const UserContext =
@@ -34,7 +35,7 @@ export const UserProvider = ({
   const [user, setUser] =
     useState<User | null>(null);
 
-  const { data } =
+  const { data, isLoading } =
     useQuery({
       queryKey: ["me"],
       queryFn: async () => {
@@ -45,6 +46,8 @@ export const UserProvider = ({
       },
       retry: false,
     });
+  const effectiveUser =
+    user ?? data ?? null;
 
   useEffect(() => {
     if (data) {
@@ -55,8 +58,9 @@ export const UserProvider = ({
   return (
     <UserContext.Provider
       value={{
-        user,
+        user: effectiveUser,
         setUser,
+        isLoading
       }
       }
     >
