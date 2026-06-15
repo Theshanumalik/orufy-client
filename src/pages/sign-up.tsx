@@ -48,9 +48,7 @@ export const SignupPage = () => {
         return response.data;
       },
 
-      onSuccess: async (
-        data
-      ) => {
+      onSuccess: async () => {
         toast.success(
           "Registeration success! Please Login"
         );
@@ -63,6 +61,7 @@ export const SignupPage = () => {
       onError: (
         error: any
       ) => {
+        console.log(error)
         toast.error(
           error?.response
             ?.data?.message ??

@@ -7,7 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import { API } from "../lib/axios";
-import { useNavigate } from "react-router";
 
 type User = {
   id: string;

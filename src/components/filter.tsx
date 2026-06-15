@@ -1,7 +1,7 @@
 import { cn } from "../lib/lib";
 
 export type TFilter = {
-  value:
+  value?:
   | "unpublished"
   | "published"
 

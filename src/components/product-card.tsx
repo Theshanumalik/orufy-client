@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Trash } from "lucide-react"
 import { API } from "../lib/axios"
-import type { AxiosError, AxiosResponse } from "axios"
 import toast from "react-hot-toast"
 
 export type TProduct = {
@@ -30,14 +29,13 @@ export const ProductCard = ({ isPublished, _id, onEdit, productName, productType
 
       return res.data
     },
-    onSuccess: (data: AxiosResponse) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] })
       toast.success("Visiblity Changed!");
     },
 
-    onError: (error: AxiosError) => {
+    onError: () => {
       toast.error(
-        error?.response?.data?.message ??
         "Failed to change Visiblity!"
       );
     },
@@ -48,14 +46,13 @@ export const ProductCard = ({ isPublished, _id, onEdit, productName, productType
       const res = await API.delete(`/products/${_id}`)
       return res.data
     },
-    onSuccess: (data: AxiosResponse) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] })
       toast.success("Deleted!");
     },
 
-    onError: (error: AxiosError) => {
+    onError: () => {
       toast.error(
-        error?.response?.data?.message ??
         "Failed to delete product!"
       );
     },

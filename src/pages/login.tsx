@@ -58,7 +58,7 @@ export const LoginPage = () => {
 
     onError: (error: AxiosError) => {
       toast.error(
-        error?.response?.data?.message ??
+        error.message ??
         "Failed to send OTP"
       );
     },

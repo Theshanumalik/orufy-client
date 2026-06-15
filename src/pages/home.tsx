@@ -12,7 +12,7 @@ export const HomePage = () => {
   const [productData, setProductData] = useState<TProduct>();
   const [filter, setFilter] = useState<
     | "published"
-    | "unpublished"
+    | "unpublished" | undefined
   >();
   const { data, isPending, error, isError } = useQuery({
     queryKey: ['products', filter],
